@@ -1,5 +1,7 @@
+import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -10,18 +12,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+
+import analisador.LexicalError;
+import analisador.Lexico;
+import analisador.Token;
+
+import java.awt.event.KeyAdapter;
 
 public class IDE {
 	private File file;
@@ -63,41 +76,30 @@ public class IDE {
 		mensagem.setBounds(166, 496, 708, 79);
 		frame.getContentPane().add(mensagem);
 		
-		frame.addComponentListener(new ComponentAdapter() {
-		    public void componentResized(ComponentEvent e) {
-		        Dimension newSize = e.getComponent().getSize();
-		        mensagem.setSize(newSize.width - 166, newSize.height - 496);
-		    }
-		});
-		
 		JTextArea editor = new JTextArea();
 		editor.setBounds(166, 0, 718, 487);
 		editor.setBorder(new NumberedBorder());
 		frame.getContentPane().add(editor);
-		
-		frame.addComponentListener(new ComponentAdapter() {
-		    @Override
-		    public void componentResized(ComponentEvent e) {
-		        Dimension size = frame.getContentPane().getSize();
-		        editor.setSize(size.width - 20, size.height - 120);
-		    }
-		});
-		
+
 		JTextPane txtpnPastanomeDoArquivo = new JTextPane();
 		txtpnPastanomeDoArquivo.setText("pasta/nome do arquivo");
 		txtpnPastanomeDoArquivo.setBounds(0, 579, 900, 25);
 		frame.getContentPane().add(txtpnPastanomeDoArquivo);
 		
 		
+
 		JButton btnNewButton = new JButton("Novo [ctrl-n]");
-		btnNewButton.addActionListener(new ActionListener() {
+		ImageIcon novo = new ImageIcon("\"C:\\Users\\thivo\\Compiladores\\Imagens\\novo.png\"");
+		btnNewButton.setIcon(novo);
+		btnNewButton.setAutoscrolls(true);
+		btnNewButton.setBounds(0, 0, 150, 72);
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				editor.setText("");
 			}
 		});
-		btnNewButton.setBounds(0, 0, 150, 72);
-		frame.getContentPane().add(btnNewButton);
-		
+	
 		JButton btnNewButton_1 = new JButton("Abrir [ctrl-o]");
 		btnNewButton_1.setBounds(0, 70, 150, 72);
 		frame.getContentPane().add(btnNewButton_1);
@@ -105,16 +107,15 @@ public class IDE {
 		//Adicionando ActionListener ao botão "Abrir"
 		btnNewButton_1.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        JFileChooser fileChooser = new JFileChooser(); //Cria uma instância de JFileChooser
-		        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES); //Permite a seleção de arquivos e pastas
+		        JFileChooser fileChooser = new JFileChooser(); 
+		        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES); 
 
-		        int returnVal = fileChooser.showOpenDialog(frame); //Exibe a caixa de diálogo de seleção de arquivo/pasta
-		        if (returnVal == JFileChooser.APPROVE_OPTION) { //Verifica se o usuário selecionou um arquivo
+		        int returnVal = fileChooser.showOpenDialog(frame); 
+		        if (returnVal == JFileChooser.APPROVE_OPTION) { 
 		            
-		        	file = fileChooser.getSelectedFile(); //Obtém o arquivo selecionado
+		        	file = fileChooser.getSelectedFile(); 
 
-		            if (file.getName().endsWith(".txt")) { //Verifica se o arquivo selecionado é um arquivo de texto
-		                //Carrega o arquivo selecionado no editor
+		            if (file.getName().endsWith(".txt")) { 
 		                try {
 		                    BufferedReader reader = new BufferedReader(new FileReader(file));
 		                    String line = null;
@@ -128,10 +129,10 @@ public class IDE {
 		                    ex.printStackTrace();
 		                }
 
-		                //Limpa a área para mensagens2
+		                //Limpa a área para mensagens
 		                mensagem.setText("");
 
-		                //Atualiza a barra de status4
+		                //Atualiza a barra de status
 		                txtpnPastanomeDoArquivo.setText("Arquivo " + file.getName() + " aberto");
 		            }
 		        }
@@ -144,22 +145,22 @@ public class IDE {
 
 		btnNewButton_2.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        if (file == null) { //Se o arquivo ainda não existe, exibe a caixa de diálogo de seleção de arquivo/pasta
+		        if (file == null) { 
 		            JFileChooser fileChooser = new JFileChooser();
 		            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
 		            int returnVal = fileChooser.showSaveDialog(frame);
-		            if (returnVal == JFileChooser.APPROVE_OPTION) { //Se o usuário selecionou um arquivo
+		            if (returnVal == JFileChooser.APPROVE_OPTION) { 
 		                file = fileChooser.getSelectedFile();
-		                if (!file.getName().endsWith(".txt")) { //Se o arquivo selecionado não é um arquivo de texto, adiciona a extensão .txt
+		                if (!file.getName().endsWith(".txt")) {
 		                    file = new File(file.getAbsolutePath() + ".txt");
 		                }
-		            } else { //Se o usuário cancelou a seleção do arquivo, retorna
+		            } else { 
 		                return;
 		            }
 		        }
 
-		        //Salva o conteúdo do editor no arquivo
+
 		        try {
 		            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 		            writer.write(editor.getText());
@@ -168,10 +169,10 @@ public class IDE {
 		            ex.printStackTrace();
 		        }
 
-		        //Limpa a área para mensagens2
+		        //Limpa a área para mensagens
 		        mensagem.setText("");
 
-		        //Atualiza a barra de status4
+		        //Atualiza a barra de status
 		        txtpnPastanomeDoArquivo.setText("Arquivo " + file.getName() + " salvo");
 
 		        //Mantém no editor o texto que está sendo editado
@@ -183,12 +184,10 @@ public class IDE {
 		btnNewButton_3.setBounds(0, 213, 150, 72);
 		frame.getContentPane().add(btnNewButton_3);
 
-		//Adicionando ActionListener ao botão "Copiar"
 		btnNewButton_3.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        String selectedText = editor.getSelectedText(); //Obtém o texto selecionado no editor
+		        String selectedText = editor.getSelectedText(); 
 		        if (selectedText != null && !selectedText.isEmpty()) {
-		            //Copia o texto para a área de transferência do sistema
 		            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(selectedText), null);
 		        }
 		    }
@@ -198,15 +197,14 @@ public class IDE {
 		btnNewButton_4.setBounds(0, 285, 150, 72);
 		frame.getContentPane().add(btnNewButton_4);
 
-		//Adicionando ActionListener ao botão "Colar"
-		btnNewButton_4.addActionListener(new ActionListener() {
+		btnNewButton_4.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
-		        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); //Obtém a área de transferência do sistema
+		        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); 
 		        Transferable contents = clipboard.getContents(null);
 		        if (contents != null && contents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 		            try {
-		                String text = (String) contents.getTransferData(DataFlavor.stringFlavor); //Obtém o conteúdo atual da área de transferência
-		                editor.paste(); //Cola o texto no editor
+		                String text = (String) contents.getTransferData(DataFlavor.stringFlavor);
+		                editor.paste(); 
 		            } catch (UnsupportedFlavorException | IOException ex) {
 		                ex.printStackTrace();
 		            }
@@ -218,14 +216,13 @@ public class IDE {
 		btnNewButton_5.setBounds(0, 355, 150, 72);
 		frame.getContentPane().add(btnNewButton_5);
 
-		//Adicionando ActionListener ao botão "Recortar"
 		btnNewButton_5.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        String selectedText = editor.getSelectedText(); //Obtém o texto selecionado no editor
+		        String selectedText = editor.getSelectedText(); 
 		        if (selectedText != null && !selectedText.isEmpty()) {
-		            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); //Obtém a área de transferência do sistema
-		            clipboard.setContents(new StringSelection(selectedText), null); //Copia o texto selecionado para a área de transferência do sistema
-		            editor.cut(); //Recorta o texto selecionado do editor
+		            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		            clipboard.setContents(new StringSelection(selectedText), null); 
+		            editor.cut(); 
 		        }
 		    }
 		});
@@ -235,11 +232,54 @@ public class IDE {
 		btnNewButton_6.setBounds(0, 426, 150, 72);
 		frame.getContentPane().add(btnNewButton_6);
 
-		//Adicionando ActionListener ao botão "Compilar"
 		btnNewButton_6.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        //Exibindo mensagem na área para mensagens
-		        mensagem.setText("A compilação de programas ainda não foi implementada.");
+		    	String texto = editor.getText();
+		    	Reader targetReader = new StringReader(texto);
+		    	Lexico lexico = new Lexico();
+		    	   lexico.setInput(targetReader);
+		    	   try {
+		    		   
+		    	   Token t = null;
+		    	   while ( (t = lexico.nextToken()) != null ) {
+		    	     System.out.println(t.getLexeme()+"\n\n\n"+t.getLexeme());
+		    	     mensagem.setText("programa compilado com sucesso");
+		    	     targetReader.close();
+		    	     
+		    	     
+		    	     
+		    	     // só escreve o lexema, necessário escrever t.getId, t.getPosition()
+		    	    
+		    	     // t.getId () - retorna o identificador da classe. Olhar Constants.java e adaptar, pois 
+		    		 // deve ser apresentada a classe por extenso
+		    	     // t.getPosition () - retorna a posição inicial do lexema no editor, necessário adaptar 
+		    		 // para mostrar a linha	
+		    	     // esse código apresenta os tokens enquanto não ocorrer erro
+		    	     // no entanto, os tokens devem ser apresentados SÓ se não ocorrer erro, necessário adaptar 
+		    		 // para atender o que foi solicitado		   
+		    	   }
+		    	   }
+		    	   catch ( LexicalError erro ) {  // tratamento de erros
+		    	     System.out.println(erro.getMessage() + " em " + erro.getPosition());
+		    	     
+		    	     String erroString = "programa não compilado \n";
+		    	     erroString += erro.getMessage();
+//		    	     
+//		    	     texto = texto.replaceAll("\\W+", " ").toLowerCase();
+//		    	     
+//		    	     // Divide a string em palavras
+//		    	     String[] palavras = texto.split("\\s+");
+//		    	     
+		    	     // e.getMessage() - retorna a mensagem de erro de SCANNER_ERRO (olhar ScannerConstants.java 
+		    		 // e adaptar conforme o enunciado da parte 2)
+		    	     // e.getPosition() - retorna a posição inicial do erro, tem que adaptar para mostrar a 
+		    		 // linha  
+		    	     
+		    	     mensagem.setText(erroString + " em " + erro.getPosition());
+		    	    } catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
 		    }
 		});
 		
@@ -249,10 +289,8 @@ public class IDE {
 		
 		btnNewButton_7.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        //Exibindo mensagem na área para mensagens
 		        mensagem.setText("Equipe: Thiago Vogt, Kelvin Leite, Felipe Bona");
 		    }
 		});
-		
 	}
 }
