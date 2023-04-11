@@ -264,12 +264,16 @@ public class IDE {
 		    	     
 		    	     String erroString = "programa não compilado \n";
 		    	     erroString += erro.getMessage();
-//		    	     
-//		    	     texto = texto.replaceAll("\\W+", " ").toLowerCase();
-//		    	     
-//		    	     // Divide a string em palavras
-//		    	     String[] palavras = texto.split("\\s+");
-//		    	     
+		    	     
+		    	     //texto = texto.replaceAll("\\W+", " ").toLowerCase(); 
+		    	     
+		    	     // Divide a string em palavras
+		    	     String a = texto.substring(0, erro.getPosition());
+		    	     System.out.println("contando linhas");
+		    	     String[] palavras = a.split("\n");
+		    	     System.out.println(palavras.length+1);
+		    	     
+		    	     
 		    	     // e.getMessage() - retorna a mensagem de erro de SCANNER_ERRO (olhar ScannerConstants.java 
 		    		 // e adaptar conforme o enunciado da parte 2)
 		    	     // e.getPosition() - retorna a posição inicial do erro, tem que adaptar para mostrar a 
