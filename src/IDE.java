@@ -26,7 +26,10 @@ import javax.swing.JTextPane;
 
 import analisador.LexicalError;
 import analisador.Lexico;
-import analisador.Token;
+import analisador.SemanticError;
+import analisador.Semantico;
+import analisador.Sintatico;
+import analisador.SyntaticError;
 
 public class IDE {
 	private File file;
@@ -232,24 +235,14 @@ public class IDE {
 				Reader targetReader = new StringReader(texto);
 				novaLinha();
 				Lexico lexico = new Lexico();
+				Sintatico sintatico = new Sintatico();
+				Semantico semantico = new Semantico();
 				lexico.setInput(targetReader);
 				try {
-					int linha = 0;
-					String compilado = "Linha        Classe        Lexema\n";
-					
-					Token t = null;
-					while ((t = lexico.nextToken()) != null) {
-						while (linha < listaLinha.size() &&
-		                        listaLinha.get(linha) < t.getPosition()) {
-		                    linha += 1;
-		                }
-
-		                compilado += linha + 1 + "     " + "   " + Token(t.getId()) + "   " + t.getLexeme() + "\n";
-						targetReader.close();
-					}
-					compilado+="programa compilado com sucesso";
-	                mensagem.setText(compilado);
-				} catch (LexicalError erro) {
+					sintatico.parse(lexico, semantico); 
+					mensagem.setText("programa compilado com sucesso");	
+				} 		  
+				catch (LexicalError erro) {
 					System.out.println(erro.getMessage() + " em " + erro.getPosition());
 
 					String caracter = texto.substring(erro.getPosition(), erro.getPosition()+1);
@@ -259,9 +252,18 @@ public class IDE {
 					System.out.println(caracter + linhas.length);
 
 					mensagem.setText("Erro na linha " + linhas.length + " - " + caracter +  " " + erro.getMessage());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} catch ( SyntaticError erroSintatico )
+				{
+				     System.out.println(erroSintatico.getPosition() + " símbolo encontrado: na entrada " + erroSintatico.getMessage()); 
+					 
+					//Trata erros sintáticos
+					//linha 				sugestão: converter getPosition em linha
+					//símbolo encontrado    sugestão: implementar um método getToken no sintatico
+					//mensagem - símbolos esperados,   alterar ParserConstants.java, String[] PARSER_ERROR		
+				}
+				catch ( SemanticError erroSemantico )
+				{
+					//Trata erros semânticos
 				}
 			}
 		});
