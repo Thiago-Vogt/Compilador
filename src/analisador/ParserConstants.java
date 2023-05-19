@@ -136,31 +136,31 @@ public interface ParserConstants
         "Era esperado -",
         "Era esperado *",
         "Era esperado /",
-        "Era esperado identificador check if read write writeln",//<lista_de_comandos> inválido",
-        "Era esperado fim_de_programa identificador check else and if read write writeln",//"<lista_de_comandos1> inválido",
-        "Era esperado identificador",//"<lista_id> inválido",
-        "<comando_de_atribuicao> inválido",
-        "<comando_de_atribuicao1> inválido",
-        "<comando_de_entrada> inválido",
-        "<comando_de_selecao> inválido",
-        "<comando_de_selecao1> inválido",
-        "<comando_de_repeticao> inválido",
-        "<comando_de_repeticao1> inválido",
-        "<comando_de_saida> inválido",
-        "<lista_de_expressoes> inválido",
-        "<lista_de_expressoes1> inválido",
-        "<comando> inválido",
-        "<expressao> inválido",
-        "<expressao_> inválido",
-        "<elemento> inválido",
-        "<relacional> inválido",
-        "<relacional_> inválido",
-        "<operador_relacional> inválido",
-        "<aritmetica> inválido",
-        "<aritmetica_> inválido",
-        "<termo> inválido",
-        "<termo_> inválido",
-        "<fator> inválido",
-        "<lista_id1> inválido"
+        "Era esperado identificador check if read write writeln",//<lista_de_comandos> inválido"
+        "Era esperado fim_de_programa identificador check else and if read write writeln",//"<lista_de_comandos1> inválido"
+        "Era esperado identificador",//"<lista_id> inválido"
+        "Era esperado identificador",//"<comando_de_atribuicao> inválido"
+        "Era esperado : ;",//"<comando_de_atribuicao1> inválido"
+        "Era esperado read",//"<comando_de_entrada> inválido"
+        "Era esperado if",//"<comando_de_selecao> inválido"
+        "Era esperado else end",//"<comando_de_selecao1> inválido"
+        "Era esperado check",//"<comando_de_repeticao> inválido"
+        "Era esperado false true",//"<comando_de_repeticao1> inválido"
+        "Era esperado write writeln",//"<comando_de_saida> inválido"
+        "Era esperado expressão",//"<lista_de_expressoes> inválido"
+        "Era esperado , )",//"<lista_de_expressoes1> inválido"
+        "Era esperado identificador check if read write writeln",//"<comando> inválido"
+        "Era esperado identificador constante_int constante_float constante_binario constante_string false not true ( + -",//"<expressao> inválido"
+        "Era esperado and or , ; : )",//"<expressao_> inválido",
+        "Era esperado identificador contante_int constante_float constante_binario constante_string false not true ( + -",//"<elemento> inválido"
+        "Era esperado identificador constante_int constante_float constante_binario constante_string ( + -",//"<relacional> inválido"
+        "Era esperado and or , ; : ) == != < > <= >=",//"<relacional_> inválido",
+        "Era esperado == != < > <= >=",//"<operador_relacional> inválido",
+        "Era esperado identificador constante_int constante_float constante_binario constante_string ( + -",//"<aritmetica> inválido"
+        "Era esperado and or , ; : ) == != < > <= >= + -",//"<aritmetica_> inválido"
+        "Era esperado constante_int constante_float constante_binario constante_string ( + -",//"<termo> inválido"
+        "Era esperado and or , : ; ) == != < <= > >= + - * /",//"<termo_> inválido"
+        "Era esperado identificador constante_int constante_float onstante_binario constante_strin ( + -",//"<fator> inválido"
+        "Era esperado , = )",//"<lista_id1> inválido"
     };
 }
