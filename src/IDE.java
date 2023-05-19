@@ -254,7 +254,19 @@ public class IDE {
 					mensagem.setText("Erro na linha " + linhas.length + " - " + caracter +  " " + erro.getMessage());
 				} catch ( SyntaticError erroSintatico )
 				{
-				     System.out.println(erroSintatico.getPosition() + " símbolo encontrado: na entrada " + erroSintatico.getMessage()); 
+				    String msgInput = editor.getText();
+				    int linha = 1;
+				    int posicao = erroSintatico.getPosition();
+
+				    for (int i = 1; i < posicao; i++) {
+				        if (msgInput.charAt(i) == '\n') {
+				            linha++;
+				        }
+				    }
+
+					
+				     
+				     mensagem.setText("Erro na linha " + linha + " - encontrado " + sintatico.getToken() + " " + erroSintatico.getMessage());
 					 
 					//Trata erros sintáticos
 					//linha 				sugestão: converter getPosition em linha

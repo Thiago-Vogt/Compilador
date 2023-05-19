@@ -102,65 +102,65 @@ public interface ParserConstants
     String[] PARSER_ERROR =
     {
         "",
-        "Era esperado fim_de_programa",
-        "Era esperado identificador",
-        "Era esperado constante_int",
-        "Era esperado constante_float",
-        "Era esperado constante_binário",
-        "Era esperado constante_string",
-        "Era esperado pr_check",
-        "Era esperado pr_and",
-        "Era esperado pr_else",
-        "Era esperado pr_end",
-        "Era esperado pr_false",
-        "Era esperado pr_if",
-        "Era esperado pr_not",
-        "Era esperado pr_or",
-        "Era esperado pr_read",
-        "Era esperado pr_true",
-        "Era esperado pr_write",
-        "Era esperado pr_writeln",
-        "Era esperado ,",
-        "Era esperado ;",
-        "Era esperado =",
-        "Era esperado :",
-        "Era esperado (",
-        "Era esperado )",
-        "Era esperado ==",
-        "Era esperado !=",
-        "Era esperado <",
-        "Era esperado >",
-        "Era esperado <=",
-        "Era esperado >=",
-        "Era esperado +",
-        "Era esperado -",
-        "Era esperado *",
-        "Era esperado /",
-        "Era esperado identificador check if read write writeln",//<lista_de_comandos> inválido"
-        "Era esperado fim_de_programa identificador check else and if read write writeln",//"<lista_de_comandos1> inválido"
-        "Era esperado identificador",//"<lista_id> inválido"
-        "Era esperado identificador",//"<comando_de_atribuicao> inválido"
-        "Era esperado : ;",//"<comando_de_atribuicao1> inválido"
-        "Era esperado read",//"<comando_de_entrada> inválido"
-        "Era esperado if",//"<comando_de_selecao> inválido"
-        "Era esperado else end",//"<comando_de_selecao1> inválido"
-        "Era esperado check",//"<comando_de_repeticao> inválido"
-        "Era esperado false true",//"<comando_de_repeticao1> inválido"
-        "Era esperado write writeln",//"<comando_de_saida> inválido"
-        "Era esperado expressão",//"<lista_de_expressoes> inválido"
-        "Era esperado , )",//"<lista_de_expressoes1> inválido"
-        "Era esperado identificador check if read write writeln",//"<comando> inválido"
-        "Era esperado identificador constante_int constante_float constante_binario constante_string false not true ( + -",//"<expressao> inválido"
-        "Era esperado and or , ; : )",//"<expressao_> inválido",
-        "Era esperado identificador contante_int constante_float constante_binario constante_string false not true ( + -",//"<elemento> inválido"
-        "Era esperado identificador constante_int constante_float constante_binario constante_string ( + -",//"<relacional> inválido"
-        "Era esperado and or , ; : ) == != < > <= >=",//"<relacional_> inválido",
-        "Era esperado == != < > <= >=",//"<operador_relacional> inválido",
-        "Era esperado identificador constante_int constante_float constante_binario constante_string ( + -",//"<aritmetica> inválido"
-        "Era esperado and or , ; : ) == != < > <= >= + -",//"<aritmetica_> inválido"
-        "Era esperado constante_int constante_float constante_binario constante_string ( + -",//"<termo> inválido"
-        "Era esperado and or , : ; ) == != < <= > >= + - * /",//"<termo_> inválido"
-        "Era esperado identificador constante_int constante_float onstante_binario constante_strin ( + -",//"<fator> inválido"
-        "Era esperado , = )",//"<lista_id1> inválido"
+        "esperado fim_de_programa",
+        "esperado identificador",
+        "esperado constante_int",
+        "esperado constante_float",
+        "esperado constante_binário",
+        "esperado constante_string",
+        "esperado pr_check",
+        "esperado pr_and",
+        "esperado pr_else",
+        "esperado pr_end",
+        "esperado pr_false",
+        "esperado pr_if",
+        "esperado pr_not",
+        "esperado pr_or",
+        "esperado pr_read",
+        "esperado pr_true",
+        "esperado pr_write",
+        "esperado pr_writeln",
+        "esperado ,",
+        "esperado ;",
+        "esperado =",
+        "esperado :",
+        "esperado (",
+        "esperado )",
+        "esperado ==",
+        "esperado !=",
+        "esperado <",
+        "esperado >",
+        "esperado <=",
+        "esperado >=",
+        "esperado +",
+        "esperado -",
+        "esperado *",
+        "esperado /",
+        "esperado identificador check if read write writeln",//<lista_de_comandos> inválido"
+        "esperado fim_de_programa identificador check else and if read write writeln",//"<lista_de_comandos1> inválido"
+        "esperado identificador",//"<lista_id> inválido"
+        "esperado identificador",//"<comando_de_atribuicao> inválido"
+        "esperado : ;",//"<comando_de_atribuicao1> inválido"
+        "esperado read",//"<comando_de_entrada> inválido"
+        "esperado if",//"<comando_de_selecao> inválido"
+        "esperado else end",//"<comando_de_selecao1> inválido"
+        "esperado check",//"<comando_de_repeticao> inválido"
+        "esperado false true",//"<comando_de_repeticao1> inválido"
+        "esperado write writeln",//"<comando_de_saida> inválido"
+        "esperado expressão",//"<lista_de_expressoes> inválido"
+        "esperado , )",//"<lista_de_expressoes1> inválido"
+        "esperado identificador check if read write writeln",//"<comando> inválido"
+        "esperado identificador constante_int constante_float constante_binario constante_string false not true ( + -",//"<expressao> inválido"
+        "esperado and or , ; : )",//"<expressao_> inválido",
+        "esperado identificador contante_int constante_float constante_binario constante_string false not true ( + -",//"<elemento> inválido"
+        "esperado identificador constante_int constante_float constante_binario constante_string ( + -",//"<relacional> inválido"
+        "esperado and or , ; : ) == != < > <= >=",//"<relacional_> inválido",
+        "esperado == != < > <= >=",//"<operador_relacional> inválido",
+        "esperado identificador constante_int constante_float constante_binario constante_string ( + -",//"<aritmetica> inválido"
+        "esperado and or , ; : ) == != < > <= >= + -",//"<aritmetica_> inválido"
+        "esperado constante_int constante_float constante_binario constante_string ( + -",//"<termo> inválido"
+        "esperado and or , : ; ) == != < <= > >= + - * /",//"<termo_> inválido"
+        "esperado identificador constante_int constante_float onstante_binario constante_strin ( + -",//"<fator> inválido"
+        "esperado , = )",//"<lista_id1> inválido"
     };
 }
