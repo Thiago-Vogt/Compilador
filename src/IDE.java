@@ -266,7 +266,7 @@ public class IDE {
 
 					
 				     
-				     mensagem.setText("Erro na linha " + linha + " - encontrado " + sintatico.getToken() + " " + erroSintatico.getMessage());
+				     mensagem.setText("Erro na linha " + linha + " - encontrado " + (sintatico.getToken().getLexeme().equals("$")?"EOF":sintatico.getToken()) + " " + erroSintatico.getMessage());
 					 
 					//Trata erros sintáticos
 					//linha 				sugestão: converter getPosition em linha

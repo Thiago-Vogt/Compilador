@@ -1,4 +1,5 @@
 package analisador;
+
 public interface ScannerConstants
 {
     int[] SCANNER_TABLE_INDEXES = 
@@ -1218,10 +1219,10 @@ public interface ScannerConstants
 
     String[] SCANNER_ERROR =
     {
-        "Símbolo inválido",
+        "Caractere não esperado",
         "",
         "Erro identificando \"!=\"",
-        "constante_string inválida",
+        "Erro identificando constante_string",
         "",
         "",
         "",
@@ -1242,9 +1243,9 @@ public interface ScannerConstants
         "Erro identificando <ignorar>",
         "",
         "",
-        "constante_float inválida",
-        "constante_binário inválida",
-        "constante_int ou constante_float inválida",
+        "Erro identificando constante_float",
+        "Erro identificando constante_binário",
+        "Erro identificando constante_int ou constante_float",
         "",
         "",
         "",
@@ -1256,11 +1257,11 @@ public interface ScannerConstants
         "Erro identificando <ignorar>",
         "",
         "",
-        "constante_int ou constante_float inválida",
+        "Erro identificando constante_int ou constante_float",
         "",
         "",
         "Erro identificando <ignorar>",
-        "constante_int ou constante_float inválida",
+        "Erro identificando constante_int ou constante_float",
         ""
     };
 

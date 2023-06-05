@@ -1,4 +1,5 @@
 package analisador;
+
 public interface ParserConstants
 {
     int START_SYMBOL = 35;
@@ -49,8 +50,8 @@ public interface ParserConstants
         { 16, 35, 10 },
         { 11, 35, 10 },
         { 17, 23, 46, 24 },
-        { 18, 23, 46, 24 },
-        { 49, 47 },
+        { 18, 23, 46, 24, 78 },
+        { 49, 75, 47 },
         {  0 },
         { 19, 46 },
         { 38 },
@@ -58,20 +59,20 @@ public interface ParserConstants
         { 45 },
         { 41 },
         { 43 },
-        { 48, 20, 36 },
+        { 76, 48, 20, 36, 77 },
         {  0 },
-        { 48, 20, 35 },
+        { 48, 20, 36 },
         { 51, 50 },
         {  0 },
-        {  8, 51, 50 },
-        { 14, 51, 50 },
+        {  8, 51, 79, 50 },
+        { 14, 51, 80, 50 },
         { 52 },
-        { 16 },
-        { 11 },
-        { 13, 51 },
+        { 16, 72 },
+        { 11, 73 },
+        { 13, 51, 74 },
         { 55, 53 },
         {  0 },
-        { 54, 55 },
+        { 54, 70, 55, 71 },
         { 25 },
         { 26 },
         { 27 },
@@ -80,20 +81,20 @@ public interface ParserConstants
         { 30 },
         { 57, 56 },
         {  0 },
-        { 31, 57, 56 },
-        { 32, 57, 56 },
+        { 31, 57, 62, 56 },
+        { 32, 57, 63, 56 },
         { 59, 58 },
         {  0 },
-        { 33, 59, 58 },
-        { 34, 59, 58 },
+        { 33, 59, 64, 58 },
+        { 34, 59, 65, 58 },
         {  2 },
-        {  3 },
-        {  4 },
+        {  3, 66 },
+        {  4, 67 },
         {  5 },
-        {  6 },
+        {  6, 81 },
         { 23, 49, 24 },
         { 31, 59 },
-        { 32, 59 },
+        { 32, 59, 69 },
         {  2, 60 },
         {  0 },
         { 19, 37 }
@@ -101,25 +102,25 @@ public interface ParserConstants
 
     String[] PARSER_ERROR =
     {
-        "",
-        "esperado fim_de_programa",
+    	"",
+        "esperado EOF",
         "esperado identificador",
         "esperado constante_int",
         "esperado constante_float",
         "esperado constante_binário",
         "esperado constante_string",
-        "esperado pr_check",
-        "esperado pr_and",
-        "esperado pr_else",
-        "esperado pr_end",
-        "esperado pr_false",
-        "esperado pr_if",
-        "esperado pr_not",
-        "esperado pr_or",
-        "esperado pr_read",
-        "esperado pr_true",
-        "esperado pr_write",
-        "esperado pr_writeln",
+        "esperado check",
+        "esperado and",
+        "esperado else",
+        "esperado end",
+        "esperado false",
+        "esperado if",
+        "esperado not",
+        "esperado or",
+        "esperado read",
+        "esperado true",
+        "esperado write",
+        "esperado writeln",
         "esperado ,",
         "esperado ;",
         "esperado =",
@@ -137,7 +138,7 @@ public interface ParserConstants
         "esperado *",
         "esperado /",
         "esperado identificador check if read write writeln",//<lista_de_comandos> inválido"
-        "esperado fim_de_programa identificador check else and if read write writeln",//"<lista_de_comandos1> inválido"
+        "esperado EOF identificador check else and if read write writeln",//"<lista_de_comandos1> inválido"
         "esperado identificador",//"<lista_id> inválido"
         "esperado identificador",//"<comando_de_atribuicao> inválido"
         "esperado : ;",//"<comando_de_atribuicao1> inválido"
@@ -150,17 +151,17 @@ public interface ParserConstants
         "esperado expressão",//"<lista_de_expressoes> inválido"
         "esperado , )",//"<lista_de_expressoes1> inválido"
         "esperado identificador check if read write writeln",//"<comando> inválido"
-        "esperado identificador constante_int constante_float constante_binario constante_string false not true ( + -",//"<expressao> inválido"
-        "esperado and or , ; : )",//"<expressao_> inválido",
-        "esperado identificador contante_int constante_float constante_binario constante_string false not true ( + -",//"<elemento> inválido"
-        "esperado identificador constante_int constante_float constante_binario constante_string ( + -",//"<relacional> inválido"
-        "esperado and or , ; : ) == != < > <= >=",//"<relacional_> inválido",
+        "esperado expressão",//"<expressao> inválido"
+        "esperado expressão",//"<expressao_> inválido",
+        "esperado expressão",//"<elemento> inválido"
+        "esperado expressão",//"<relacional> inválido"
+        "esperado expressão",//"<relacional_> inválido",
         "esperado == != < > <= >=",//"<operador_relacional> inválido",
-        "esperado identificador constante_int constante_float constante_binario constante_string ( + -",//"<aritmetica> inválido"
-        "esperado and or , ; : ) == != < > <= >= + -",//"<aritmetica_> inválido"
-        "esperado constante_int constante_float constante_binario constante_string ( + -",//"<termo> inválido"
-        "esperado and or , : ; ) == != < <= > >= + - * /",//"<termo_> inválido"
-        "esperado identificador constante_int constante_float onstante_binario constante_strin ( + -",//"<fator> inválido"
+        "esperado expressão",//"<aritmetica> inválido"
+        "esperado expressão",//"<aritmetica_> inválido"
+        "esperado expressão",//"<termo> inválido"
+        "esperado expressão",//"<termo_> inválido"
+        "esperado expressão",//"<fator> inválido"
         "esperado , = )",//"<lista_id1> inválido"
     };
 }
